@@ -1,0 +1,12 @@
+# List of apache modules to be installed
+
+# Web root and vhosts directories
+# Exmaple: /etc/httpd/conf/vhosts
+apache_paths: []
+
+# Additional Apache modules -installed after httpd
+# Example: mod_ssl
+apache_modules: []
+
+# Name of vhost files 
+apache_vhosts_files: ['0example.com.conf']

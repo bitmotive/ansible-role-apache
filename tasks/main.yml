@@ -1,0 +1,36 @@
+---
+# Install pip, virtualenv, and python project requirements
+
+- name: Install Apache
+  yum: name=httpd state=latest
+  tags: apache-install
+
+- name: Install Apache Modules
+  yum: name={{ item }} state=latest 
+  with_items: apache_modules
+  tags: apache-modules
+
+- name: Create web root file
+  file: path={{ item }} state=directory
+  with_items: apache_paths
+  tags:
+    - apache-paths
+
+- name: Copy Apache config
+  copy: >
+      src=etc/httpd/conf/httpd.conf
+      dest=/etc/httpd/conf/httpd.conf
+      owner=root
+      group=root
+  tags:
+    - apache-config
+
+- name: Copy Vhosts files
+  copy: >
+      src=etc/httpd/conf/vhosts/{{ item }}
+      dest=/etc/httpd/conf/vhosts/{{ item }}
+      owner=root
+      group=root
+  with_items: apache_vhosts_files
+  tags:
+    - apache-vhosts
