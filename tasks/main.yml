@@ -27,7 +27,7 @@
 
 - name: Copy Vhosts files
   copy: >
-      src=etc/httpd/conf/vhosts/{{ item }}
+      src=files/etc/httpd/conf/vhosts/{{ item }}
       dest=/etc/httpd/conf/vhosts/{{ item }}
       owner=root
       group=root
